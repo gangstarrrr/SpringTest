@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,6 +58,23 @@ public class HttpUtil {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static boolean checkLogin(HttpSession session) {
+		if(session==null) {
+			return false;
+			//세션안만들어졌을때 예외처리
+		}else {
+			HashMap<String,Object> userMap=(HashMap<String,Object>)session.getAttribute("user");
+			
+			if(userMap==null) {
+				return false;
+			}else {
+
+				return true;
+			}
+			
+		}
 	}
 
 }
